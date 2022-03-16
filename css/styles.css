@@ -16,7 +16,7 @@ body {
 /* top page */
 
 section.top-page {
-    background: url('../images/fiche.webp');
+    background: url('../images/bandeau.jpg');
     background-size: cover;
     height: 80vh;
 }
