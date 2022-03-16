@@ -1,6 +1,7 @@
 :root {
     --hauteurmenu: 40px;
-    --hovercolor: cyan;
+    --hovercolor: rgb(247, 132, 38);
+    --backgroudcolor: cornsilk;
 }
 
 * {
@@ -10,7 +11,7 @@
   }
 
 body {
-    background-color: cornsilk;
+    background-color: var(--backgroudcolor);
 }
 
 /* top page */
@@ -31,7 +32,7 @@ section.top-page {
 header.header {
     display: flex;
     align-items: center;
-    background-color: cornsilk;
+    background-color: var(--backgroudcolor);
     height: var(--hauteurmenu);
 }
 
@@ -55,7 +56,6 @@ nav ul {
 }
 
 nav > ul > li {
-    border-color: white;
     position: relative;
     height: 100%;
     flex: 1;
@@ -85,7 +85,7 @@ li a {
     margin-top: var(--hauteurmenu);
     width: 100%;
     text-align: left;
-    background-color: white;
+    background-color: var(--backgroudcolor);
     border-radius: 0px;
     overflow: hidden;
     max-height: 0;
@@ -99,11 +99,11 @@ li a {
     display: flex;
 }
 
-nav > ul > li:hover > a {
-    color: var(--hovercolor);
+nav > ul > li:hover {
+    border-bottom: 4px solid var(--hovercolor);
 }
 
-.sous-menu > li:hover {
+nav > ul > li:hover > a {
     color: var(--hovercolor);
 }
 
@@ -126,11 +126,11 @@ nav > ul > li:hover > a {
 
 @keyframes apparitionSousMenu {
     0%{
-        border-top: 3px solid blue;
+        border-top: 4px solid var(--hovercolor);
     }
     100%{
         max-height: 50em;
-        border-top: 3px solid blue;
+        border-top: 4px solid var(--hovercolor);
     }
 }
 
