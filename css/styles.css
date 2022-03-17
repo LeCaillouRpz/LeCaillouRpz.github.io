@@ -1,8 +1,8 @@
 :root {
-    --headerheight: 40px;
-    --navheight: 40px;
+    --navheight: 60px;
     --hovercolor: rgb(247, 132, 38);
-    --backgroudcolor: cornsilk;
+    --backgroudcolor: white;
+    --textcolor: black;
 }
 
 * {
@@ -21,10 +21,10 @@ header.header {
     display: flex;
     align-items: center;
     text-align: center;
-    height: var(--headerheight);
+    height: var(--navheight);
 }
 
-nav {
+.main-nav {
     width: 100%;
     height: var(--navheight);
     font-size: 18px;
@@ -33,23 +33,23 @@ nav {
     background-color: var(--backgroudcolor);
 }
 
-nav > ul {
+.main-nav > ul {
     display: flex;
     box-shadow: 0px 1px 2px 1px black;
     height: var(--navheight);
 }
 
-nav ul {
+.main-nav ul {
     list-style: none;
 }
 
-nav > ul > li {
+.main-nav > ul > li {
     position: relative;
     height: 100%;
     flex: 1;
 }
 
-nav > ul > li > a {
+.main-nav > ul > li > a {
     position: absolute;
     height: 50%;
     width: 100%;
@@ -58,7 +58,7 @@ nav > ul > li > a {
 
 li a {
     text-decoration: none;
-    color: black;
+    color: var(--textcolor);
 }
 
 .menu-deroulant > a:after {
@@ -86,11 +86,11 @@ li a {
     display: flex;
 }
 
-nav > ul > li:hover {
+.main-nav > ul > li:hover {
     border-bottom: 4px solid var(--hovercolor);
 }
 
-nav > ul > li:hover > a {
+.main-nav > ul > li:hover > a {
     color: var(--hovercolor);
 }
 
