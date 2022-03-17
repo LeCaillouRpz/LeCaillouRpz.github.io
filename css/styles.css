@@ -1,5 +1,6 @@
 :root {
-    --hauteurmenu: 40px;
+    --headerheight: 40px;
+    --navheight: 40px;
     --hovercolor: rgb(247, 132, 38);
     --backgroudcolor: cornsilk;
 }
@@ -14,41 +15,28 @@ body {
     background-color: var(--backgroudcolor);
 }
 
-/* top page */
-
-section.top-page {
-    background: url('../images/bandeau.jpg');
-    background-size: cover;
-    height: 80vh;
-}
-
-.big-title {
-    margin-top: 100px;
-    color: white;
-    font-size: 80px;
-    text-align: center;
-}
+/* header */
 
 header.header {
     display: flex;
     align-items: center;
-    background-color: var(--backgroudcolor);
-    height: var(--hauteurmenu);
+    text-align: center;
+    height: var(--headerheight);
 }
 
 nav {
     width: 100%;
-    height: var(--hauteurmenu);
+    height: var(--navheight);
     font-size: 18px;
     position: sticky;
     top: 0;
+    background-color: var(--backgroudcolor);
 }
 
 nav > ul {
     display: flex;
-    text-align: center;
     box-shadow: 0px 1px 2px 1px black;
-    height: var(--hauteurmenu);
+    height: var(--navheight);
 }
 
 nav ul {
@@ -64,8 +52,7 @@ nav > ul > li {
 nav > ul > li > a {
     position: absolute;
     height: 50%;
-    width: 50%;
-    
+    width: 100%;
     transform: translate(-50%, 50%);
 }
 
@@ -82,7 +69,7 @@ li a {
 }
 
 .sous-menu {
-    margin-top: var(--hauteurmenu);
+    margin-top: var(--navheight);
     width: 100%;
     text-align: left;
     background-color: var(--backgroudcolor);
@@ -112,12 +99,8 @@ nav > ul > li:hover > a {
 }
 
 @keyframes rotationFleche {
-    0%{
-        transform: rotate(0deg);
-    }
-    100%{
-        transform: rotate(90deg);
-    }
+    0%{transform: rotate(0deg);}
+    100%{transform: rotate(90deg);}
 }
 
 .menu-deroulant:hover > a:after {
@@ -125,18 +108,32 @@ nav > ul > li:hover > a {
 }
 
 @keyframes apparitionSousMenu {
-    0%{
-        border-top: 4px solid var(--hovercolor);
-    }
-    100%{
-        max-height: 50em;
-        border-top: 4px solid var(--hovercolor);
-    }
+    0%{border-top: 4px solid var(--hovercolor);}
+    100%{max-height: 50em;
+        border-top: 4px solid var(--hovercolor);}
 }
 
 .menu-deroulant:hover > .sous-menu{
     animation: apparitionSousMenu 1s forwards;
 }
+
+/* top-page */
+
+section.top-page {
+    background: url('../images/bandeau.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 80vh;
+}
+
+.big-title {
+    padding: 50px;
+    padding-top: 100px;
+    color: white;
+    font-size: 80px;
+    text-align: center;
+}
+
 
 /* services */
 
