@@ -4,53 +4,59 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Normale Fiches</title>
+    <title>Tuto menu responsive</title>
 
-    <link rel="stylesheet" href="css/hamburgers.css">
     <link rel="stylesheet" href="css/styles.css">
-    <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
+    <script src="scripts/toggle-menu.js" defer></script>
 </head>
-
-<body>
-    <header class="header">
-        <nav class="main-nav">
-            <ul>
-                <li><button class="hamburger hamburger--collapse" type="button">
-                    <span class="hamburger-box">
-                      <span class="hamburger-inner"></span>
-                    </span>
-                  </button></li>
-                <li class="homebutton"><a href="index.html"><i class="fas fa-home"></i></a></li>
-                <li class="menu-deroulant">
-                    <a href="fiches.html">Fiches</a>
-                    <ul class="sous-menu">
-                        <li><a href="fiches/maths.html">Mathématiques</a></li>
-                        <li><a href="fiches/physique.html">Physique</a></li>
-                    </ul>
+<body> 
+    <nav class="navbar dark-mode" role="navigation">
+        <ul class="start">
+            <button class="burger">
+                <span class="bar"></span>
+            </button>
+            <div class="burger-menu">
+                <li class="burger-item">
+                    <a href="#">Accueil</a>
+                    <span class="menu-bar"></span>
                 </li>
-                <li><a href="about-us.html">À propos</a></li>
-                <li><a href="contact.html">Nous contacter</a></li>
-            </ul>
-        </nav>
-    </header>
+                <li class="burger-item">Fiches
+                    <span class="menu-bar"></span>
+                    <li class="burger-subitem"><a href="#">Mathématiques</a></li>
+                    <li class="burger-subitem"><a href="#">Physique</a></li>
+                    <li class="burger-subitem"><a href="#">Chimie</a></li>
+                    <li class="burger-subitem"><a href="#">Sciences de l'ingénieur</a></li>
+                    <li class="burger-subitem"><a href="#">Biologie</a></li>
+                </li>
+            </div>
+            <div class="navbar-logo"><a href="#">Normale-Fiches.com</a></div>
+        </ul>
+        <ul class="navbar-links">
+            <li class="navbar-link"><a href="#">À propos</a></li>
+            <li class="navbar-link"><a href="#">Nous contacter</a></li>
+        </ul>
+        
+        
+    </nav>
+    <main class="main-content" role="main">
+        <section class="top-page">
+            <h1 class="big-title">Des Fiches Super !</h1>
+        </section>
 
-    <section class="top-page">
-        <h1 class="big-title">Des Fiches Super !</h1>
-    </section>
-
-    <section class="services">
-        <div class="services-item">
-            <img src="images/liste-de-papier.png" class="fiche">
-            <p>Des fiches supers !</p>
-        </div>
-        <div class="services-item">
-            <img src="images/ovni.png" class="ovni">
-            <p>Accessibles partout !</p>
-        </div>
-        <div class="services-item">
-            <img src="images/des-lunettes-de-soleil.png" class="lunettes">
-           <p>Avec classe !</p>
-        </div>
-    </section>
+        <section class="services">
+            <div class="services-item">
+                <img src="images/liste-de-papier.png" class="fiche">
+                <p>Des fiches super !</p>
+            </div>
+            <div class="services-item">
+                <img src="images/ovni.png" class="ovni">
+                <p>Accessibles partout !</p>
+            </div>
+            <div class="services-item">
+                <img src="images/des-lunettes-de-soleil.png" class="lunettes">
+            <p>Avec classe !</p>
+            </div>
+        </section>
+    </main>
 </body>
 </html>
