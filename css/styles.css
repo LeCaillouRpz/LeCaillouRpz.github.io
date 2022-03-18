@@ -110,7 +110,7 @@ body {
         left: 0;
         color: var(--burger-menu-color);
         background: var(--burger-menu-bg-color);
-        transition: all .4s ease-in-out;
+        transition: all .4s cubic-bezier(0.29, 0.61, 0.63, 1.24);
     }
     .show-nav .burger-menu {
         width: var(--burger-menu-width);
@@ -135,7 +135,7 @@ body {
         margin: 10px 0px;
         background: var(--navbar-color);
         border-radius: 3px;
-        transition: all .4s ease-in-out;
+        transition: all .2s ease-in-out;
     }
     .show-nav .burger-item {
         transform: translateX(20px);
