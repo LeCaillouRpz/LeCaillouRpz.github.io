@@ -3,7 +3,7 @@
 }
 
 :root {
-    --case-size: 150px;
+    --case-size: 120px;
     --grid-gap: 10px;
     --btn-bg-color: rgba(255, 255, 255, 0.75);
     --btn-hover-color: rgba(255, 255, 255, 0.9);
@@ -31,7 +31,7 @@ body {
     justify-content: center;
     align-items: center;
 }
-.back > a {
+.back > i {
     color: var(--text-color);
 }
 .back:hover {
@@ -44,13 +44,12 @@ body {
     display: flex;
     position: relative;
     justify-content: center;
-    height: 100px;
+    height: 70px;
     margin-top: 20px;
 }
 h1 {
-    font-size: 3rem;
+    font-size: 2.2rem;
     color: var(--btn-hover-color);
-    transition: all 1s cubic-bezier(0.58, 1.38, 0.75, 1.32);
 }
 
 
@@ -76,7 +75,7 @@ h1 {
     background-color: var(--btn-bg-color);
     text-align: center;
     color: var(--text-color);
-    font-size: 7rem;
+    font-size: 5rem;
     border: none;
     border-radius: 20px;
 }
