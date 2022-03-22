@@ -1,0 +1,120 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+:root {
+    --case-size: 150px;
+    --grid-gap: 10px;
+    --btn-bg-color: rgba(255, 255, 255, 0.75);
+    --btn-hover-color: rgba(255, 255, 255, 0.9);
+    --text-color: rgba(59, 59, 59, 0.75);
+    font-family: 'Cambria';
+}
+
+body {
+    margin: 0;
+    background: linear-gradient(to right, rgb(39, 205, 255), rgb(33, 253, 33));
+}
+
+/* Back button */
+
+.back {
+    display: flex;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 20px;
+    left: 20px;
+    background-color: var(--btn-bg-color);
+    border: none;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.back > a {
+    color: var(--text-color);
+}
+.back:hover {
+    background-color: var(--btn-hover-color);
+}
+
+/* Header */
+
+.header {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    height: 100px;
+    margin-top: 20px;
+}
+h1 {
+    font-size: 3rem;
+    color: var(--btn-hover-color);
+    transition: all 1s cubic-bezier(0.58, 1.38, 0.75, 1.32);
+}
+
+
+/* Board */
+
+.board-frame {
+    display: flex;
+    margin-top: 10px;
+    position: relative;
+    justify-content: center;
+}
+.board {
+    position: absolute;
+    top: 0;
+    display: grid;
+    grid-template-columns: repeat(3, var(--case-size));
+    grid-template-columns: repeat(3, var(--case-size));
+    grid-gap: var(--grid-gap);
+}
+.case {
+    width: var(--case-size);
+    height: var(--case-size);
+    background-color: var(--btn-bg-color);
+    text-align: center;
+    color: var(--text-color);
+    font-size: 7rem;
+    border: none;
+    border-radius: 20px;
+}
+.board button {
+    transition: all 0.2s cubic-bezier(0.58, 1.38, 0.75, 1.32);
+}
+.clickable:hover {
+    background-color: var(--btn-hover-color);
+}
+.case.clicked {
+    border: 10px solid white;
+}
+.case.highlighted {
+    background-color: rgba(72, 255, 0, 0.8);
+    border: 10px solid rgb(127, 255, 77) ;
+    border-radius: 20px;
+}
+
+/* Reset button */
+
+.reset-button {
+    display: none;
+    position: absolute;
+    padding: 0;
+    top: calc(3 * (var(--case-size) + var(--grid-gap)));
+    width: var(--case-size);
+    height: 0;
+    overflow: hidden;
+    background-color: var(--btn-bg-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 20px;
+    font-size: 1.5rem;
+}
+.reset-button:hover {
+    background-color: var(--btn-hover-color);
+}
+.showing {
+    display: block;
+    height: 50px;
+}
