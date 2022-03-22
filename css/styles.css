@@ -230,14 +230,24 @@ body {
 
 
 /* Small devices */
-@media screen and (max-width: 767.98px) {
+@media screen and (max-width: 780px) {
     .navbar-links {
+        display: none;
+    }
+    .search-bar {
         display: none;
     }
 }
 
 /* Medium devices */
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 780px) and (max-width: 1010px) {
+    .navbar-links {
+        display: none;
+    }
+}
+
+/* Big devices */
+@media screen and (min-width: 1010px) {
     .navbar-link > a::after {
         display: block;
         content: "";
