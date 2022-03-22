@@ -3,18 +3,45 @@
 }
 
 :root {
-    --case-size: 120px;
-    --grid-gap: 10px;
+    /* Computer */
+    --box-size-computer: 150px;
+    --box-border-computer: 10px;
+    --grid-gap-computer: 15px;
+    --box-font-size-computer: 6rem;
+    --font-size-computer: 3rem;
+
+    /* Mobile */
+    --box-size-mobile: 100px;
+    --grid-gap-mobile: 10px;
+    --box-font-size-mobile: 4rem;
+    --font-size-mobile: 2rem;
+
     --btn-bg-color: rgba(255, 255, 255, 0.75);
     --btn-hover-color: rgba(255, 255, 255, 0.9);
     --text-color: rgba(59, 59, 59, 0.75);
-    font-family: 'Cambria';
+
+    font-family: 'Century Gothic';
 }
 
 body {
     margin: 0;
     background: linear-gradient(to right, rgb(39, 205, 255), rgb(33, 253, 33));
 }
+
+
+/* Header */
+
+.header {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    height: calc(var(--box-size-computer) / 1.2);
+}
+h1 {
+    font-size: var(--font-size-computer);
+    color: var(--btn-hover-color);
+}
+
 
 /* Back button */
 
@@ -38,77 +65,20 @@ body {
     background-color: var(--btn-hover-color);
 }
 
-/* Header */
-
-.header {
-    display: flex;
-    position: relative;
-    justify-content: center;
-    height: 70px;
-    margin-top: 20px;
-}
-h1 {
-    font-size: 2.2rem;
-    color: var(--btn-hover-color);
-}
-
-
-/* Board */
-
-.board-frame {
-    display: flex;
-    margin-top: 10px;
-    position: relative;
-    justify-content: center;
-}
-.board {
-    position: absolute;
-    top: 0;
-    display: grid;
-    grid-template-columns: repeat(3, var(--case-size));
-    grid-template-columns: repeat(3, var(--case-size));
-    grid-gap: var(--grid-gap);
-}
-.case {
-    width: var(--case-size);
-    height: var(--case-size);
-    background-color: var(--btn-bg-color);
-    text-align: center;
-    color: var(--text-color);
-    font-size: 5rem;
-    border: none;
-    border-radius: 20px;
-}
-.board button {
-    transition: all 0.2s cubic-bezier(0.58, 1.38, 0.75, 1.32);
-}
-.clickable:hover {
-    background-color: var(--btn-hover-color);
-}
-.case.clicked {
-    border: 10px solid white;
-}
-.case.highlighted {
-    background-color: rgba(72, 255, 0, 0.8);
-    border: 10px solid rgb(127, 255, 77) ;
-    border-radius: 20px;
-}
-
 /* Reset button */
 
 .reset-button {
     display: none;
     position: absolute;
-    padding: 0;
-    top: calc(3 * (var(--case-size) + var(--grid-gap)));
-    width: var(--case-size);
-    height: 0;
-    overflow: hidden;
+    width: 50px;
+    height: 50px;
+    top: 20px;
+    right: 20px;
     background-color: var(--btn-bg-color);
-    color: var(--text-color);
     border: none;
     border-radius: 20px;
-    font-size: 1.5rem;
+    justify-content: center;
+    align-items: center;
 }
 .reset-button:hover {
     background-color: var(--btn-hover-color);
@@ -116,4 +86,68 @@ h1 {
 .showing {
     display: block;
     height: 50px;
+}
+
+/* Board */
+
+.board-frame {
+    display: flex;
+    margin: 0;
+    position: relative;
+    justify-content: center;
+}
+.board {
+    position: absolute;
+    top: 0;
+    display: grid;
+    grid-template-columns: repeat(3, var(--box-size-computer));
+    grid-template-columns: repeat(3, var(--box-size-computer));
+    grid-gap: var(--grid-gap-computer);
+}
+.board button {
+    transition: all 0.2s cubic-bezier(0.58, 1.38, 0.75, 1.32);
+}
+.box {
+    display: block;
+    margin: 0;
+    width: var(--box-size-computer);
+    height: var(--box-size-computer);
+    background-color: var(--btn-bg-color);
+    color: var(--text-color);
+    font-size: var(--box-font-size-computer);
+    border: var(--box-border-computer) solid white;
+    border-radius: 20px;
+    font-family: 'Arial';
+}
+.box.clickable {
+    border: none;
+}
+.clickable:hover {
+    background-color: var(--btn-hover-color);
+}
+.box.highlighted {
+    background-color: rgba(72, 255, 0, 0.8);
+    border: 10px solid rgb(127, 255, 77) ;
+    border-radius: 20px;
+}
+
+/* Devices */
+
+@media screen and (max-width: 780px) {
+    .header {
+        height: calc(var(--box-size-mobile) / 1.2);
+    }
+    h1 {
+        font-size: var(--font-size-mobile);
+    }
+    .board {
+        grid-template-columns: repeat(3, var(--box-size-mobile));
+        grid-template-columns: repeat(3, var(--box-size-mobile));
+        grid-gap: var(--grid-gap-mobile);
+    }
+    .box {
+        width: var(--box-size-mobile);
+        height: var(--box-size-mobile);
+        font-size: var(--box-font-size-mobile);
+    }
 }
