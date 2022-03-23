@@ -44,73 +44,74 @@ h1 {
     color: var(--btn-hover-color);
 }
 
+/* Buttons */
 
-/* Back button */
+    /* Back button */
 
-.back {
-    display: flex;
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    top: 20px;
-    left: 20px;
-    background-color: var(--btn-bg-color);
-    border: none;
-    border-radius: 20px;
-    justify-content: center;
-    align-items: center;
-}
-.back > i {
-    color: var(--text-color);
-    font-size: 1.2rem;
-}
-.back:hover {
-    background-color: var(--btn-hover-color);
-}
+    .back {
+        display: flex;
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        top: 20px;
+        left: 20px;
+        background-color: var(--btn-bg-color);
+        border: none;
+        border-radius: 20px;
+        justify-content: center;
+        align-items: center;
+    }
+    .back > i {
+        color: var(--text-color);
+        font-size: 1.2rem;
+    }
+    .back:hover {
+        background-color: var(--btn-hover-color);
+    }
 
-/* Switch */
+    /* Switch */
 
-.switch-mode {
-    display: flex;
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    top: 20px;
-    left: 80px;
-    background-color: var(--btn-bg-color);
-    border: none;
-    border-radius: 20px;
-    justify-content: center;
-    align-items: center;
-    color: var(--text-color);
-    font-size: 1.5rem;
-}
-.switch-mode:hover {
-    background-color: var(--btn-hover-color);
-}
+    .switch-mode {
+        display: flex;
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        top: 20px;
+        left: 80px;
+        background-color: var(--btn-bg-color);
+        border: none;
+        border-radius: 20px;
+        justify-content: center;
+        align-items: center;
+        color: var(--text-color);
+        font-size: 1.5rem;
+    }
+    .switch-mode:hover {
+        background-color: var(--btn-hover-color);
+    }
 
-/* Reset button */
+    /* Reset button */
 
-.reset-button {
-    display: none;
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    top: 20px;
-    right: 20px;
-    background-color: var(--btn-bg-color);
-    border: none;
-    border-radius: 20px;
-    justify-content: center;
-    align-items: center;
-}
-.reset-button:hover {
-    background-color: var(--btn-hover-color);
-}
-.showing {
-    display: block;
-    height: 50px;
-}
+    .reset-button {
+        display: none;
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        top: 20px;
+        right: 20px;
+        background-color: var(--btn-bg-color);
+        border: none;
+        border-radius: 20px;
+        justify-content: center;
+        align-items: center;
+    }
+    .reset-button:hover {
+        background-color: var(--btn-hover-color);
+    }
+    .showing {
+        display: block;
+        height: 50px;
+    }
 
 /* Board */
 

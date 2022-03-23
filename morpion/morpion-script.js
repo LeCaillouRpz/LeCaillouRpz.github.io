@@ -135,7 +135,7 @@ function computerPlay() {
     play(BOXES[computerAlgo(getGrid())], 0);
 }
 function computerAlgo(grid) {
-    console.log(grid)
+    var moves = 9 - leftMoves(grid).length;
     var winPossibility = canWin(grid, -1);
     if (winPossibility[0]) {
         return winPossibility[1];
@@ -143,6 +143,21 @@ function computerAlgo(grid) {
     var defeatPossibility = canWin(grid, 1);
     if (defeatPossibility[0]) {
         return defeatPossibility[1];
+    }
+    if (moves == 3 && ((grid[0] && grid[8]) || (grid[2] && grid[6]))) {
+        return [1, 3, 5, 7].sort(() => Math.random() - 0.5)[0];
+    }
+    if (moves == 3 && ((grid[0] && grid[5]) || (grid[2] && grid[3]))) {
+        return 1
+    }
+    if (moves == 3 && ((grid[0] && grid[7]) || (grid[6] && grid[1]))) {
+        return 3
+    }
+    if (moves == 3 && ((grid[8] && grid[1]) || (grid[2] && grid[7]))) {
+        return 5
+    }
+    if (moves == 3 && ((grid[6] && grid[5]) || (grid[8] && grid[3]))) {
+        return 7
     }
     if (!grid[4]) {
         return 4
