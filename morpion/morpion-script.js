@@ -37,6 +37,7 @@ function checkWin() {
             victoire = true;
         }
         if (victoire) {
+            playSound("WinSound.mp3")
             BOXES[LINES[i][0] - 1].classList.add("highlighted");
             BOXES[LINES[i][1] - 1].classList.add("highlighted");
             BOXES[LINES[i][2] - 1].classList.add("highlighted");
@@ -47,17 +48,18 @@ function checkWin() {
     return false;
 }
 function checkFull() {
-    for (var i = 0; i < LINES.length; i++) {
+    for (var i = 0; i <= LINES.length; i++) {
         if (BOXES[i].innerText == "") {
             return;
         }
     }
+    playSound("DrawSound.mp3")
     TEXT.innerText = "Partie nulle.";
     end();
 }
 function onClick(box) {
     if (box.innerText == "") {
-        playSound("Pop.mp3")
+        playSound("BoxClickSound.mp3")
         if (joueur !== "") { 
             box.innerText = joueur;
             if (joueur == "X") {
@@ -81,6 +83,7 @@ BOXES.forEach(box => {
     })
 })
 RESET_BUTTON.addEventListener("click", () => {
+    playSound("ResetSound.mp3")
     start();
 })
 
