@@ -12,6 +12,7 @@
 
     /* Mobile */
     --box-size-mobile: 100px;
+    --box-border-mobile: 7px;
     --grid-gap-mobile: 10px;
     --box-font-size-mobile: 4rem;
     --font-size-mobile: 2rem;
@@ -136,6 +137,7 @@ h1 {
 @media screen and (max-width: 780px) {
     .header {
         height: calc(var(--box-size-mobile) / 1.2);
+        margin-top: 120px;
     }
     h1 {
         font-size: var(--font-size-mobile);
@@ -149,5 +151,6 @@ h1 {
         width: var(--box-size-mobile);
         height: var(--box-size-mobile);
         font-size: var(--box-font-size-mobile);
+        border: var(--box-border-mobile) solid white;
     }
 }

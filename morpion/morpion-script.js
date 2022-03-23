@@ -87,5 +87,4 @@ RESET_BUTTON.addEventListener("click", () => {
     start();
 })
 
-
 start();
