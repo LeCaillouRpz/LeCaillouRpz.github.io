@@ -37,6 +37,7 @@ body {
     position: relative;
     justify-content: center;
     height: calc(var(--box-size-computer) / 1.2);
+    margin-top: 10px;
 }
 h1 {
     font-size: var(--font-size-computer);
@@ -61,8 +62,30 @@ h1 {
 }
 .back > i {
     color: var(--text-color);
+    font-size: 1.2rem;
 }
 .back:hover {
+    background-color: var(--btn-hover-color);
+}
+
+/* Switch */
+
+.switch-mode {
+    display: flex;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 20px;
+    left: 80px;
+    background-color: var(--btn-bg-color);
+    border: none;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
+    font-size: 1.5rem;
+}
+.switch-mode:hover {
     background-color: var(--btn-hover-color);
 }
 
@@ -126,10 +149,14 @@ h1 {
 .clickable:hover {
     background-color: var(--btn-hover-color);
 }
-.box.highlighted {
+.box.X-Highlight {
     background-color: rgba(72, 255, 0, 0.8);
     border: 10px solid rgb(127, 255, 77) ;
-    border-radius: 20px;
+}
+.box.O-Highlight {
+    background-color: rgba(0, 195, 255, 0.801);
+    border: 10px solid rgb(0, 174, 255);
+    color: white;
 }
 
 /* Devices */
