@@ -27,7 +27,6 @@ function end() {
     BOXES.forEach(box => {
         box.classList.remove("clickable");
     })
-
 }
 function displayWin(i, player) {
     playSound("WinSound.mp3")
@@ -75,7 +74,7 @@ function play(box, player) {
             if (PvP) {
                 currentPlayer = -currentPlayer;
             } else if (player != 0){
-                computerPlay();
+                computerMove();
             }
         }
     }
@@ -83,24 +82,16 @@ function play(box, player) {
 function getGrid() {
     var output = [];
     for (var i = 0; i < 9; i++) {
-        if (BOXES[i].innerHTML == "X") {
-            output.push(1)
-        } else if (BOXES[i].innerHTML == "O") {
-            output.push(-1)
-        } else {
-            output.push(0)
-        }
-    }
-    return output;
+        if (BOXES[i].innerHTML == "X") {output.push(1)} 
+        else if (BOXES[i].innerHTML == "O") {output.push(-1)} 
+        else {output.push(0)}
+    } return output;
 }
 function leftMoves(grid) {
     var output = [];
     for (var i = 0; i < 9; i++) {
-        if (grid[i] == 0) {
-            output.push(i);
-        }
-    }
-    return output;
+        if (!grid[i]) {output.push(i);}
+    } return output;
 }
 function canWin(grid, player) {
     var leftToPlay = leftMoves(grid);
@@ -110,70 +101,59 @@ function canWin(grid, player) {
         if (evaluation(nextGrid)[0] && evaluation(nextGrid)[1] == player) {
             return [true, leftToPlay[i]];
         }
-    }
-    return false;
+    } return false;
 }
 function evaluation(grid) {
     for (var i = 0; i < WINNING_COMBINAISONS.length; i++) {
         var check = grid[WINNING_COMBINAISONS[i][0]]
-                    + grid[WINNING_COMBINAISONS[i][1]]
-                    + grid[WINNING_COMBINAISONS[i][2]];
-        if (check == 3) {
-            return [true, 1, i];
-        } else if (check == -3) {
-            return [true, -1, i]
-        }
+                  + grid[WINNING_COMBINAISONS[i][1]]
+                  + grid[WINNING_COMBINAISONS[i][2]];
+        if (check == 3) {return [true, 1, i];} 
+        else if (check == -3) {return [true, -1, i]}
     }
     for (var i = 0; i < BOXES.length; i++) {
-        if (BOXES[i].innerText == "") {
-            return [false, false];
-        }
-    }
-    return [false, true];
+        if (BOXES[i].innerText == "") {return [false, false];}
+    } return [false, true];
 }
-function computerPlay() {
-    play(BOXES[computerAlgo(getGrid())], 0);
+function computerMove() {
+    play(BOXES[ticTacToeAlgorithm(getGrid())], 0);
 }
-function computerAlgo(grid) {
+function ticTacToeAlgorithm(grid) {
     var moves = 9 - leftMoves(grid).length;
+
     var winPossibility = canWin(grid, -1);
-    if (winPossibility[0]) {
-        return winPossibility[1];
-    }
+    if (winPossibility[0]) {return winPossibility[1];}
+
     var defeatPossibility = canWin(grid, 1);
-    if (defeatPossibility[0]) {
-        return defeatPossibility[1];
-    }
-    if (moves == 3 && ((grid[0] && grid[8]) || (grid[2] && grid[6]))) {
+    if (defeatPossibility[0]) {return defeatPossibility[1];}
+
+    if (moves == 3 && ((grid[0] == 1 && grid[8] == 1) || (grid[2] == 1 && grid[6] == 1))) {
         return [1, 3, 5, 7].sort(() => Math.random() - 0.5)[0];
     }
     if (moves == 3 && ((grid[0] && grid[5]) || (grid[2] && grid[3]))) {
         return 1
-    }
-    if (moves == 3 && ((grid[0] && grid[7]) || (grid[6] && grid[1]))) {
+    } if (moves == 3 && ((grid[0] && grid[7]) || (grid[6] && grid[1]))) {
         return 3
-    }
-    if (moves == 3 && ((grid[8] && grid[1]) || (grid[2] && grid[7]))) {
+    } if (moves == 3 && ((grid[8] && grid[1]) || (grid[2] && grid[7]))) {
         return 5
-    }
-    if (moves == 3 && ((grid[6] && grid[5]) || (grid[8] && grid[3]))) {
+    } if (moves == 3 && ((grid[6] && grid[5]) || (grid[8] && grid[3]))) {
         return 7
     }
+
     if (!grid[4]) {
         return 4
     }
-    if (!grid[0]) {
-        return 0
+
+    var cornerKernel = [0, 2, 0,
+                        2, 2, 2,
+                        0, 2, 0]
+    var cornerGrid = getGrid().map((e, i) => e + cornerKernel[i])
+    var leftCorners = leftMoves(cornerGrid)
+    if (leftCorners.length) {
+        var randCorner = leftMoves(cornerGrid).sort(() => Math.random() - 0.5);
+        return randCorner[0]
     }
-    if (!grid[2]) {
-        return 2
-    }
-    if (!grid[6]) {
-        return 6
-    }
-    if (!grid[8]) {
-        return 8
-    }
+
     var randGrid = leftMoves(grid).sort(() => Math.random() - 0.5);
     return randGrid[0];
 }
@@ -202,6 +182,4 @@ MODE_BUTTON.addEventListener("click", () => {
     start()
 })
 
-
-console.log(canWin([1, 1, 0, -1, 0, -1, 0, 0, 0]))
 start();
