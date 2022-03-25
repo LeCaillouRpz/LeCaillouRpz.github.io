@@ -1,7 +1,7 @@
 const WINNING_COMBINAISONS = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
 const BOXES = document.querySelectorAll(".box");
 const RESET_BUTTON = document.querySelector(".reset-button");
-const MODE_BUTTON = document.querySelector(".switch-mode");
+const MODE_BUTTON = document.querySelector(".mode-button");
 const TEXT = document.querySelector("h1");
 
 var PvP = true;
