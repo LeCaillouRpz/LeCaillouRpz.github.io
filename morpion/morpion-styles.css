@@ -9,7 +9,7 @@
     --highlight-border-computer: 15px;
     --grid-gap-computer: 15px;
     --box-font-size-computer: 6rem;
-    --font-size-computer: 3rem;
+    --text-size-computer: 3rem;
 
     /* Mobile */
     --box-size-mobile: 100px;
@@ -17,7 +17,7 @@
     --highlight-border-mobile: 10px;
     --grid-gap-mobile: 10px;
     --box-font-size-mobile: 4rem;
-    --font-size-mobile: 2rem;
+    --text-size-mobile: 2rem;
 
     --btn-bg-color: rgba(255, 255, 255, 0.75);
     --btn-hover-color: rgba(255, 255, 255, 0.9);
@@ -31,22 +31,7 @@ body {
     background: linear-gradient(to right, rgb(39, 205, 255), rgb(33, 253, 33));
 }
 
-
-/* Header */
-
-.header {
-    display: flex;
-    position: relative;
-    justify-content: center;
-    height: calc(var(--box-size-computer) / 1.2);
-    margin-top: 10px;
-}
-h1 {
-    font-size: var(--font-size-computer);
-    color: var(--btn-hover-color);
-}
-
-/* Control buttons */
+/* Navigation */
     .control-buttons {
         display: flex;
         position: absolute;
@@ -94,6 +79,18 @@ h1 {
         height: 50px;
     }
 
+
+/* Text display */
+
+h1 {
+    text-align: center;
+    margin-top: 100px;
+    height: var(--text-size-computer);
+    font-size: var(--text-size-computer);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+
 /* Board */
 
 .board-frame {
@@ -124,7 +121,6 @@ h1 {
     border: var(--box-border-computer) solid white;
     border-radius: 20px;
     font-family: 'Arial';
-    transition: transform 1000ms cubic-bezier(0.58, 1.38, 0.75, 1.32);
 }
 .box.clickable {
     border: transparent;
@@ -149,12 +145,10 @@ h1 {
 /* Devices */
 
 @media screen and (max-width: 780px) {
-    .header {
-        height: calc(var(--box-size-mobile) / 1.2);
-        margin-top: 120px;
-    }
     h1 {
-        font-size: var(--font-size-mobile);
+        margin-top: 100px;
+        height: var(--text-size-mobile);
+        font-size: var(--text-size-mobile);
     }
     .board {
         grid-template-columns: repeat(3, var(--box-size-mobile));
