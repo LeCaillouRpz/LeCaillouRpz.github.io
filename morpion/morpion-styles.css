@@ -59,11 +59,11 @@ h1 {
         justify-content: center;
         align-items: center;
         color: var(--text-color);
+        transition: all 200ms cubic-bezier(0.58, 1.38, 0.75, 1.32);
     }
     .control-buttons:hover {
         background-color: var(--btn-hover-color);
         transform: scale(1.1);
-        transition: 200ms cubic-bezier(0.58, 1.38, 0.75, 1.32);
     }
     .control-buttons:active {
         transform: scale(0.98);
@@ -74,6 +74,7 @@ h1 {
     .back-button {
         left: 20px;
         font-size: 1.2rem;
+        text-decoration: none;
     }
 
     /* Mode button */

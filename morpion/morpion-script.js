@@ -51,13 +51,12 @@ function displayWin(i, player) {
     BOXES[WINNING_COMBINAISONS[i][2]].classList.add(highlightClass);
     end();
 }
-function displayFull() {
+function displayDraw() {
     playSound("DrawSound.mp3")
     TEXT.innerText = "Partie nulle.";
     end();
 }
 function play(box, player) {
-    playSound("BoxClickSound.mp3");
     if (player == 1) {
         box.innerText = "X";
     } else {
@@ -69,7 +68,7 @@ function play(box, player) {
         displayWin(eval[2], eval[1]);
     } else {
         if (eval[1]) {
-            displayFull();
+            displayDraw();
         } else {
             if (PvP) {
                 currentPlayer = -currentPlayer;
@@ -175,6 +174,7 @@ function ticTacToeAlgorithm(grid) {
     return randGrid[0];
 }
 function onClick(box) {
+    playSound("BoxClickSound.mp3");
     if (box.classList.contains("clickable")) {
         play(box, currentPlayer);
     }
