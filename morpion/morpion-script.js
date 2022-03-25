@@ -130,15 +130,32 @@ function ticTacToeAlgorithm(grid) {
     if (moves == 3 && ((grid[0] == 1 && grid[8] == 1) || (grid[2] == 1 && grid[6] == 1))) {
         return [1, 3, 5, 7].sort(() => Math.random() - 0.5)[0];
     }
-    if (moves == 3 && ((grid[0] && grid[5]) || (grid[2] && grid[3]))) {
-        return 1
-    } if (moves == 3 && ((grid[0] && grid[7]) || (grid[6] && grid[1]))) {
-        return 3
-    } if (moves == 3 && ((grid[8] && grid[1]) || (grid[2] && grid[7]))) {
-        return 5
-    } if (moves == 3 && ((grid[6] && grid[5]) || (grid[8] && grid[3]))) {
-        return 7
-    }
+    if (moves == 3) {
+        if ((grid[0] == 1 && grid[5] == 1) || (grid[2] == 1 && grid[3] == 1)) {
+            return 1
+        } if ((grid[0] == 1 && grid[7] == 1) || (grid[6] == 1 && grid[1] == 1)) {
+            return 3
+        } if ((grid[8] == 1 && grid[1] == 1) || (grid[2] == 1 && grid[7] == 1)) {
+            return 5
+        } if ((grid[6] == 1 && grid[5] == 1) || (grid[8] == 1 && grid[3] == 1)) {
+            return 7
+        }
+    }   
+    if (moves == 5) {
+        if ((grid[0] == 1 && grid[5] == 1 && grid[7] == 1)) {
+            if (grid[3]) {return 2;} 
+            else {return 6;}
+        } if ((grid[2] == 1 && grid[3] == 1 && grid[7] == 1)) {
+            if (grid[1]) {return 8;} 
+            else {return 0;}
+        } if ((grid[6] == 1 && grid[1] == 1 && grid[5] == 1)) {
+            if (grid[3]) {return 8;} 
+            else {return 0;}
+        } if ((grid[8] == 1 && grid[1] == 1 && grid[3] == 1)) {
+            if (grid[5]) {return 6;} 
+            else {return 2;}
+        }
+    }   
 
     if (!grid[4]) {
         return 4
@@ -148,8 +165,8 @@ function ticTacToeAlgorithm(grid) {
                         2, 2, 2,
                         0, 2, 0]
     var cornerGrid = getGrid().map((e, i) => e + cornerKernel[i])
-    var leftCorners = leftMoves(cornerGrid)
-    if (leftCorners.length) {
+    var emptyCorners = leftMoves(cornerGrid)
+    if (emptyCorners.length) {
         var randCorner = leftMoves(cornerGrid).sort(() => Math.random() - 0.5);
         return randCorner[0]
     }
