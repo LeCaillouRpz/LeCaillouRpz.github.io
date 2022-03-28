@@ -162,6 +162,10 @@ KEYS.forEach(key => {
         play(LETTER);
     })
 })
+const RESET_BUTTON = document.querySelector(".reset-button");
+RESET_BUTTON.addEventListener("click", () => {
+    start();
+})
 
 
 /* Variables */

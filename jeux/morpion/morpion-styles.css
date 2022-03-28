@@ -70,13 +70,9 @@ body {
 
     /* Reset button */
     .reset-button {
-        display: none;
+        display: block;
         right: 20px;
         font-size: 1rem;
-    }
-    .showing {
-        display: block;
-        height: 50px;
     }
 
 

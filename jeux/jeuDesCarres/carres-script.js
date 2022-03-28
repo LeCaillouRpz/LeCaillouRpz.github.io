@@ -24,6 +24,11 @@ SPACES.forEach(space => {
         }
     });
 });
+const SQUARES = document.querySelectorAll(".bigSquare");
+const RESET_BUTTON = document.querySelector(".reset-button");
+RESET_BUTTON.addEventListener("click", () => {
+    start();
+})
 
 /* Variables */
 
@@ -33,12 +38,17 @@ var currentPlayer = 1;
 
 function start() {
     SPACES.forEach(space => {
-        space.classList.remove("claimedbyRed", "claimedByGreen");
+        space.classList.remove("claimedByRed", "claimedByGreen");
         space.classList.add("clickable");
     });
+    SQUARES.forEach(square => {
+        square.classList.remove("claimedByRed", "claimedByGreen", "notClaimed");
+    })
+    RED_SCORE.innerText = 0;
+    GREEN_SCORE.innerText = 0;
 }
-function incrementScore() {
-    if (currentPlayer == 1) {
+function incrementScore(player) {
+    if (player == 1) {
         RED_SCORE.innerText = String(parseInt(RED_SCORE.innerText) + 1);
     } else {
         GREEN_SCORE.innerText = String(parseInt(GREEN_SCORE.innerText) + 1);
@@ -80,18 +90,25 @@ function checkSurrounded(square) {
                          document.getElementById(id[0] + "-" + String(parseInt(id[1]) + 1)),
                          document.getElementById(String(parseInt(id[0]) - 1) + "-" + id[1]),
                          document.getElementById(String(parseInt(id[0]) + 1) + "-" + id[1])];
-    var colorToCheck;
-    if (currentPlayer == 1) {colorToCheck = "claimedByRed"}
-    else {colorToCheck = "claimedByGreen"}
+    var r = 0;
+    var g = 0;
     for (var i in spacesToCheck) {
-        if (!spacesToCheck[i].classList.contains(colorToCheck)) {
-            isSurrounded = false;
-            break;
+        if (spacesToCheck[i].classList.contains("claimedByRed")) {
+            r += 1;
+        }  else if (spacesToCheck[i].classList.contains("claimedByGreen")){
+            g += 1;
         }
     }
-    if (isSurrounded) {
-        incrementScore();
-        square.classList.add(colorToCheck);
+    if (r + g == 4) {
+        if (r > g) {
+            incrementScore(1);
+            square.classList.add("claimedByRed");
+        } else if (g > r) {
+            incrementScore(-1);
+            square.classList.add("claimedByGreen");
+        } else {
+            square.classList.add("notClaimed");
+        }
     }
 }
 function checkFull() {

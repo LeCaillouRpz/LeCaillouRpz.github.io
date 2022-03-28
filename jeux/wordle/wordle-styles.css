@@ -21,6 +21,8 @@
     --gap-width-mobile: 4px;
     --font-size-mobile: 2rem;
 
+    --nav-btn-bg-color: rgba(255, 255, 255, 0.4);
+    --nav-btn-hover-color: rgba(255, 255, 255, 0.6);
     --word-length: 5;
 
     font-family: 'Century Gothic';
@@ -30,6 +32,49 @@ body {
     margin: 0;
     background-color: rgb(46, 46, 46);
 }
+
+/* Navigation */
+    nav {
+        height: 50px;
+    }
+
+    .control-buttons {
+        display: flex;
+        position: absolute;
+        top: 20px;
+        width: 50px;
+        height: 50px;
+        background-color: var(--nav-btn-bg-color);
+        border: none;
+        border-radius: 20px;
+        justify-content: center;
+        align-items: center;
+        color: var(--text-color);
+        transition: all 200ms cubic-bezier(0.58, 1.38, 0.75, 1.32);
+    }
+    .control-buttons:hover {
+        background-color: var(--nav-btn-hover-color);
+        transform: scale(1.1);
+    }
+    .control-buttons:active {
+        transform: scale(0.98);
+        transition: 50ms;
+    }
+
+    /* Back button */
+    .back-button {
+        left: 20px;
+        font-size: 1.2rem;
+        text-decoration: none;
+    }
+
+    /* Reset button */
+    .reset-button {
+        display: block;
+        right: 20px;
+        font-size: 1rem;
+    }
+
 
 /* Title */
 

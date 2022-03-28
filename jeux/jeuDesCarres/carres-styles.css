@@ -6,6 +6,13 @@
     --case-size: 80px;
     --grid-gap: 5px;
     --space-size: calc(var(--case-size) - var(--grid-gap));
+
+    --red-bg-color: rgb(255, 0, 0);
+    --green-bg-color: rgb(72, 255, 0);
+    --null-bg-color: rgba(75, 75, 75, 0.3);
+
+    --nav-btn-bg-color: rgba(255, 255, 255, 0.4);
+    --nav-btn-hover-color: rgba(255, 255, 255, 0.6);
 }
 
 body {
@@ -13,6 +20,48 @@ body {
     background: linear-gradient(to left, blue, rgb(0, 225, 255));
     font-family: 'Century Gothic';
 }
+
+/* Navigation */
+    nav {
+        height: 50px;
+    }
+
+    .control-buttons {
+        display: flex;
+        position: absolute;
+        top: 20px;
+        width: 50px;
+        height: 50px;
+        background-color: var(--nav-btn-bg-color);
+        border: none;
+        border-radius: 20px;
+        justify-content: center;
+        align-items: center;
+        color: var(--text-color);
+        transition: all 200ms cubic-bezier(0.58, 1.38, 0.75, 1.32);
+    }
+    .control-buttons:hover {
+        background-color: var(--nav-btn-hover-color);
+        transform: scale(1.1);
+    }
+    .control-buttons:active {
+        transform: scale(0.98);
+        transition: 50ms;
+    }
+
+    /* Back button */
+    .back-button {
+        left: 20px;
+        font-size: 1.2rem;
+        text-decoration: none;
+    }
+
+    /* Reset button */
+    .reset-button {
+        display: block;
+        right: 20px;
+        font-size: 1rem;
+    }
 
 /* Score text */
 
@@ -26,10 +75,10 @@ h1 {
     font-size: 2rem;
 }
 .red-score {
-    color: rgba(255, 0, 0, 0.8);
+    color: var(--red-bg-color);
 }
 .green-score {
-    color: rgba(43, 255, 0, 0.8);
+    color: var(--green-bg-color);
 }
 
 /* Board */
@@ -56,10 +105,13 @@ h1 {
     background-color: rgba(255, 255, 255, 0.4);
 }
 .claimedByRed {
-    background-color: rgb(255, 0, 0);
+    background-color: var(--red-bg-color);
 }
 .claimedByGreen {
-    background-color: rgb(60, 255, 0);
+    background-color: var(--green-bg-color);
+}
+.notClaimed {
+    background-color: var(--null-bg-color);
 }
 .clickable:hover {
     background-color: rgba(255, 255, 255, 0.9);

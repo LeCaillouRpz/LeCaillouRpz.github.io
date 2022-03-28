@@ -18,12 +18,10 @@ function start() {
         box.classList.remove("O-Highlight");
         box.classList.remove("X-Highlight");
     })
-    RESET_BUTTON.classList.remove("showing");
     TEXT.innerText = "";
     currentPlayer = 1;
 }
 function end() {
-    RESET_BUTTON.classList.add("showing");
     BOXES.forEach(box => {
         box.classList.remove("clickable");
     })
