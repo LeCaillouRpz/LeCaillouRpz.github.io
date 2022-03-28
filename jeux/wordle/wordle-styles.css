@@ -1,0 +1,139 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+:root {
+    /* Computer */
+    --box-height-computer: 80px;
+    --box-width-computer: 80px;
+    --box-border-radius-computer: 7px;
+    --border-size-computer: 5px;
+    --gap-height-computer: 10px;
+    --gap-width-computer: 10px;
+    --font-size-computer: 3.5rem;
+
+    /* Mobile */
+    --box-height-mobile: 40px;
+    --box-width-mobile: 40px;
+    --box-border-radius-mobile: 7px;
+    --border-size-mobile: 4px;
+    --gap-height-mobile: 4px;
+    --gap-width-mobile: 4px;
+    --font-size-mobile: 2rem;
+
+    --word-length: 5;
+
+    font-family: 'Century Gothic';
+}
+
+body {
+    margin: 0;
+    background-color: rgb(46, 46, 46);
+}
+
+/* Title */
+
+h1 {
+    color: white;
+    text-align: center;
+    font-size: 3rem;
+}
+
+/* Board */
+
+.board-frame {
+    display: flex;
+    position: relative;
+    justify-content: center;
+}
+.board {
+    display: grid;
+    grid-template-columns: repeat(var(--word-length), var(--box-width-computer));
+    grid-template-rows: repeat(6, var(--box-height-computer));
+    grid-gap: var(--gap-height-computer) var(--gap-width-computer) ;
+}
+.box {
+    display: flex;
+    border-radius: var(--box-border-radius-computer);
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: var(--font-size-computer);
+}
+.wellPlaced {
+    background-color: rgba(30, 255, 0, 0.75);
+    border: var(--border-size-computer) solid rgb(30, 255, 0);
+}
+.misplaced {
+    background-color: rgba(255, 238, 0, 0.75);
+    border: var(--border-size-computer) solid rgb(255, 238, 0);
+}
+
+/* Keyboard */
+
+#keyboard-container {
+    display: none;
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    height: 200px;
+    width: 100%;
+}
+
+/* Small Devices */
+
+@media screen and (max-width: 820px) {
+    h1 {
+        font-size: 2rem;
+    }
+    .board {
+        display: grid;
+        grid-template-columns: repeat(var(--word-length), var(--box-width-mobile));
+        grid-template-rows: repeat(6, var(--box-height-mobile));
+        grid-gap: var(--gap-height-mobile) var(--gap-width-mobile) ;
+    }
+    .box {
+        border-radius: var(--box-border-radius-mobile);
+        font-size: var(--font-size-mobile);
+    }
+    .wellPlaced {
+        border: var(--border-size-mobile) solid rgb(30, 255, 0);
+    }
+    .misplaced {
+        border: var(--border-size-mobile) solid rgb(255, 238, 0);
+    }
+
+    #keyboard-container {
+        display: block;
+    }
+    .keyboard-row {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin: 0 auto 8px;
+        touch-action: manipulation;
+    }
+    .keyboard-row button {
+        font-family: inherit;
+        font-weight: bold;
+        border: 0;
+        padding: 0;
+        height: 58px;
+        cursor: pointer;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: rgb(215, 218, 220);
+        flex-grow: 1;
+        text-transform: uppercase;
+        margin-right: 6px;
+        border-radius: 4px;
+        user-select: none;
+    }
+    .keyboard-row button.wide-button {
+        flex-grow: 1.5;
+    }
+    .spacer-half {
+        flex-grow: 0.5;
+    }
+}

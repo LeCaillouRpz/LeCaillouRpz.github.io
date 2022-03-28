@@ -1,0 +1,91 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --case-size: 80px;
+    --grid-gap: 5px;
+    --space-size: calc(var(--case-size) - var(--grid-gap));
+}
+
+body {
+    margin: 0;
+    background: linear-gradient(to left, blue, rgb(0, 225, 255));
+    font-family: 'Century Gothic';
+}
+
+/* Score text */
+
+.score-text {
+    display: flex;
+    justify-content: center;
+}
+h1 {
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    font-size: 2rem;
+}
+.red-score {
+    color: rgba(255, 0, 0, 0.8);
+}
+.green-score {
+    color: rgba(43, 255, 0, 0.8);
+}
+
+/* Board */
+
+.board-frame {
+    display: flex;
+    position: relative;
+    justify-content: center;
+}
+.board {
+    display: grid;
+    grid-template-columns: var(--grid-gap) var(--case-size) 
+                           var(--grid-gap) var(--case-size) 
+                           var(--grid-gap) var(--case-size) 
+                           var(--grid-gap) var(--case-size) 
+                           var(--grid-gap) var(--case-size) 
+                           var(--grid-gap);
+    background-color: rgba(255, 255, 255, 0.3);
+}
+.spaces {
+    display: block;
+    position: relative;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+.claimedByRed {
+    background-color: rgb(255, 0, 0);
+}
+.claimedByGreen {
+    background-color: rgb(60, 255, 0);
+}
+.clickable:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+.clickable.vertical:hover {
+    transform: scale(2, 1);
+}
+.clickable.horizontal:hover {
+    transform: scale(1, 2);
+}
+.smallSquare {
+    border: none;
+    height: var(--grid-gap);
+    width: var(--grid-gap);
+    background-color: rgba(255, 255, 255, 0.075);
+}
+.bigSquare {
+    border: none;
+    height: var(--case-size);
+    width: var(--case-size);
+}
+.vertical {
+    height: var(--case-size);
+    width: var(--grid-gap);
+}
+.horizontal {
+    height: var(--grid-gap);
+    width: var(--case-size);
+}
