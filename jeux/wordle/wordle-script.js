@@ -186,7 +186,10 @@ function start() {
     gameWon = false;
     BOXES.forEach(box => {
         box.innerText = "";
-        box.classList.remove("wellPlaced", "misplaced")
+        box.classList.remove("found", "misplaced")
+    });
+    KEYS.forEach(key => {
+        key.classList.remove("found", "misplaced", "discarded")
     })
 }
 function end() {
@@ -226,38 +229,37 @@ function checkword() {
     if (guess.length == WORD_LENGTH) {
         if (LIST_TO_SEARCH.includes(guess.toLowerCase())) {
             var lettersToFind = word.slice();
-            var lettersLeft = guess.slice();
             for (var i = 0; i < WORD_LENGTH; i++) {
-                if (guess[i] == word[i]) {
-                    BOXES[WORD_LENGTH * currentLine  + i].classList.add("wellPlaced");
+                if (lettersToFind.includes(guess[i])) {
+                    BOXES[WORD_LENGTH * currentLine  + i].className = "box misplaced";
                     lettersToFind = lettersToFind.replace(guess[i], "");
-                    lettersLeft = lettersLeft.replace(guess[i], "-");
-                }
-            }
-            for (var i = 0; i < WORD_LENGTH; i++) {
-                if (lettersToFind.includes(lettersLeft[i])) {
-                    BOXES[WORD_LENGTH * currentLine  + i].classList.add("misplaced");
-                    lettersToFind = lettersToFind.replace(guess[i], "");
+                    updateKeyboard(guess[i], 1)
+                } else {
+                    updateKeyboard(guess[i], 0)
                 }
             } 
+            for (var i = 0; i < WORD_LENGTH; i++) {
+                if (guess[i] == word[i]) {
+                    BOXES[WORD_LENGTH * currentLine  + i].className = "box found";
+                    updateKeyboard(guess[i], 2)
+                }
+            }
+            
             currentLine += 1;
             currentBox = 0;
         } else {
             alert("Mot inexistant.");
-            currentBox = 0;
-            resetLine();
         }
     } else {
         alert("Mot trop court.");
-        currentBox = 0;
-        resetLine();
     }
     
 }
-function resetLine() {
-    for (var i = 0; i < WORD_LENGTH; i++) {
-        BOXES[WORD_LENGTH * currentLine + i].innerText = "";
-    }
+function updateKeyboard(letter, newState) {
+    const STATES = ["discarded", "misplaced", "found"];
+    var key = document.querySelector("[data-key='" + letter.toLowerCase() + "']");
+    var currentState = STATES.indexOf(key.className);
+    key.className = STATES[Math.max(currentState, newState)];
 }
 function keyListener(event) {
     var key = event.key;

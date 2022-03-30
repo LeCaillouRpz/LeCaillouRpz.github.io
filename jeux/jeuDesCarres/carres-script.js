@@ -58,7 +58,6 @@ function play(space) {
     if (currentPlayer == 1) {space.classList.add("claimedByRed")} 
     else {space.classList.add("claimedByGreen");}
     check(space);
-    checkFull();
     currentPlayer = -currentPlayer;
 }
 function check(space) {
@@ -85,36 +84,22 @@ function check(space) {
 }
 function checkSurrounded(square) {
     var id = square.id.split("-");
-    var isSurrounded = true;
     var spacesToCheck = [document.getElementById(id[0] + "-" + String(parseInt(id[1]) - 1)),
                          document.getElementById(id[0] + "-" + String(parseInt(id[1]) + 1)),
                          document.getElementById(String(parseInt(id[0]) - 1) + "-" + id[1]),
                          document.getElementById(String(parseInt(id[0]) + 1) + "-" + id[1])];
-    var r = 0;
-    var g = 0;
+    var s = 0
     for (var i in spacesToCheck) {
-        if (spacesToCheck[i].classList.contains("claimedByRed")) {
-            r += 1;
-        }  else if (spacesToCheck[i].classList.contains("claimedByGreen")){
-            g += 1;
+        if (spacesToCheck[i].classList.contains("claimedByRed") || spacesToCheck[i].classList.contains("claimedByGreen")) {
+            s += 1;
         }
     }
-    if (r + g == 4) {
-        if (r > g) {
-            incrementScore(1);
+    if (s == 4) {
+        if (currentPlayer == 1) {
             square.classList.add("claimedByRed");
-        } else if (g > r) {
-            incrementScore(-1);
-            square.classList.add("claimedByGreen");
         } else {
-            square.classList.add("notClaimed");
+            square.classList.add("claimedByGreen"); 
         }
-    }
-}
-function checkFull() {
-    var remainingSpaces = document.querySelectorAll(".clickable").length;
-    if (remainingSpaces == 0) {
-        displayScore();
     }
 }
 
