@@ -116,20 +116,29 @@ body {
     font-size: var(--font-size-computer);
 }
 .box.found {
+    background-color: var(--found-color);
     border: var(--border-size-computer) solid var(--found-border-color);
 }
 .box.misplaced {
+    background-color: var(--misplaced-color);
     border: var(--border-size-computer) solid var(--misplaced-border-color);
 }
-.found {
-    background-color: var(--found-color);
-}
-.misplaced {
-    background-color: var(--misplaced-color);
-}
-.discarded {
+.box.discarded {
     background-color: var(--discarded-color);
 }
+.box.animate {
+    animation: rotate .2s linear;
+}
+
+@keyframes rotate {
+    0% {
+        transform: scaleY(-100%);
+    }
+    100% {
+        transform: scaleY(100%);
+    }
+}
+
 
 /* Keyboard */
 
@@ -161,6 +170,7 @@ body {
     margin-right: 6px;
     border-radius: 4px;
     user-select: none;
+    transition: all .2s ease-in-out;
 }
 .keyboard-row > button.wide-button {
     flex-grow: 1.5;
