@@ -158,16 +158,20 @@ const BOXES = document.querySelectorAll(".box");
 const KEYS = document.querySelectorAll(".keyboard-row button");
 KEYS.forEach(key => {
     key.addEventListener("click", () => {
-        const LETTER = key.getAttribute("data-key");
-        play(LETTER);
+        if (canPlay) {
+            const LETTER = key.getAttribute("data-key");
+            play(LETTER);
+        }
     })
 })
 const RESET_BUTTON = document.querySelector(".reset-button");
 RESET_BUTTON.addEventListener("click", () => {
-    window.removeEventListener("keydown", keyListener);
     start();
 })
+window.addEventListener("keydown", keyListener);
 
+const INTERVAL = 250;
+const DELAY = INTERVAL * WORD_LENGTH;
 
 /* Variables */
 
@@ -175,51 +179,54 @@ var word;
 var currentLine;
 var currentBox;
 var gameWon;
+var canPlay;
 
 /* Functions */
 
 function start() {
     word = LIST_TO_SEARCH[Math.floor(Math.random() * LIST_TO_SEARCH.length)].toUpperCase();
-    window.addEventListener("keydown", keyListener);
+    canPlay = true;
     currentBox = 0;
     currentLine = 0;
     gameWon = false;
     BOXES.forEach(box => {
         box.innerText = "";
-        box.classList.remove("found", "misplaced")
+        box.className = "box";
     });
     KEYS.forEach(key => {
-        key.classList.remove("found", "misplaced", "discarded")
-    })
+        key.className = "";
+    });
 }
 function end() {
-    if (gameWon) {
-        alert("Félicitations !")
-    } else {
-        alert("Perdu ! Le mot était " + word + " !")
-    }
+    canPlay = false;
+    var message = gameWon ? "Félicitations !" : "Perdu ! Le mot était " + word + " !";
+    alert(message);
 }
 function play(key) {
-    window.removeEventListener("keydown", keyListener);
+    canPlay = false;
     var currentPos = WORD_LENGTH * currentLine + currentBox;
     if ((key == "Backspace" || key == "del") && currentBox != 0) {
         BOXES[currentPos - 1].innerText = "";
         currentBox -= 1;
     } else if (key.toLowerCase() == "enter") {
-        checkword();
+        var wordChecked = checkword();
     } else if (key.length == 1 && (key.match(/^[0-9a-z]+$/) || key.toLowerCase().match(/^[0-9a-z]+$/))) {
         if (currentBox != WORD_LENGTH) {
             BOXES[WORD_LENGTH * currentLine + currentBox].innerText = key.toUpperCase();
             currentBox += 1;
         }
     }
-    if (!gameWon && currentLine != 6) {
-        window.addEventListener("keydown", keyListener);
-    } else {
-        end();
-    }
+    setTimeout(() => {
+        if (!gameWon && currentLine != 6) {
+            canPlay = true;
+        } else {
+            end();
+        }
+    }, wordChecked ? DELAY : 0);
+    
 }
 function checkword() {
+    console.log(word)
     var guess = "";
     for (var i = 0; i < WORD_LENGTH; i++) {
         guess += BOXES[WORD_LENGTH * currentLine + i].innerText;
@@ -229,41 +236,64 @@ function checkword() {
     if (guess.length == WORD_LENGTH) {
         if (LIST_TO_SEARCH.includes(guess.toLowerCase())) {
             var lettersToFind = word.slice();
-            for (var i = 0; i < WORD_LENGTH; i++) {
-                if (lettersToFind.includes(guess[i])) {
-                    BOXES[WORD_LENGTH * currentLine  + i].className = "box misplaced";
+            var outputListOfStates = Array.from("".repeat(WORD_LENGTH));
+            for (var i in guess) {
+                if (guess[i] == word[i]) {
                     lettersToFind = lettersToFind.replace(guess[i], "");
-                    updateKeyboard(guess[i], 1)
-                } else {
-                    updateKeyboard(guess[i], 0)
+                    outputListOfStates[i] = "found"
+                }
+                console.log(i, lettersToFind)
+            }
+            for (var i in guess) {
+                if (outputListOfStates[i] != "found") {
+                    if (lettersToFind.includes(guess[i]) && outputListOfStates[i] != "found") {
+                        outputListOfStates[i] = "misplaced"
+                        lettersToFind = lettersToFind.replace(guess[i], "");
+                    } else {
+                        outputListOfStates[i] = "discarded"
+                    }
+                    console.log(i, lettersToFind)
                 }
             } 
-            for (var i = 0; i < WORD_LENGTH; i++) {
-                if (guess[i] == word[i]) {
-                    BOXES[WORD_LENGTH * currentLine  + i].className = "box found";
-                    updateKeyboard(guess[i], 2)
-                }
-            }
             
-            currentLine += 1;
-            currentBox = 0;
         } else {
             alert("Mot inexistant.");
+            return false;
         }
     } else {
         alert("Mot trop court.");
+        return false;
     }
-    
+    animate(guess, outputListOfStates);
+    currentLine += 1;
+    currentBox = 0;
+    return true;
 }
-function updateKeyboard(letter, newState) {
-    const STATES = ["discarded", "misplaced", "found"];
-    var key = document.querySelector("[data-key='" + letter.toLowerCase() + "']");
-    var currentState = STATES.indexOf(key.className);
-    key.className = STATES[Math.max(currentState, newState)];
+function animate(guess, listOfStates) {
+    var boxesToAnimate = [];
+    for(var i = 0; i < WORD_LENGTH; ++i) boxesToAnimate.push(BOXES[WORD_LENGTH * currentLine + i]);
+    boxesToAnimate.forEach((box, index) => {
+        setTimeout(() => {
+            box.classList.add("animate");
+            box.classList.add(listOfStates[index]);
+        }, INTERVAL * index)
+    });
+    setTimeout(() => {
+        const STATES = ["discarded", "misplaced", "found"];
+        for (var i in guess) {
+            var letter = guess[i];
+            var newState = STATES.indexOf(listOfStates[i]);
+            var key = document.querySelector("[data-key='" + letter.toLowerCase() + "']");
+            var currentState = STATES.indexOf(key.className);
+            key.className = STATES[Math.max(currentState, newState)];
+        }
+    }, DELAY);
 }
 function keyListener(event) {
-    var key = event.key;
-    play(key);
+    if (canPlay) {
+        var key = event.key;
+        play(key);
+    }
 }
 
 start();
