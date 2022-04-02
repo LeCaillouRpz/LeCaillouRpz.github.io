@@ -42,7 +42,7 @@ function start() {
         space.classList.add("clickable");
     });
     SQUARES.forEach(square => {
-        square.classList.remove("claimedByRed", "claimedByGreen", "notClaimed");
+        square.classList.remove("claimedByRed", "claimedByGreen");
     })
     RED_SCORE.innerText = 0;
     GREEN_SCORE.innerText = 0;
